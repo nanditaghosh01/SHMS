@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="lumoraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#733F67" />
+      <stop offset="50%" stop-color="#9E688E" />
+      <stop offset="100%" stop-color="#C294B6" />
+    </linearGradient>
+    <linearGradient id="foldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B280A3" />
+      <stop offset="100%" stop-color="#733F67" />
+    </linearGradient>
+  </defs>
+  <!-- Circle Base -->
+  <circle cx="50" cy="50" r="48" fill="#FDFBF9" stroke="#E8D9ED" stroke-width="2" />
+  
+  <!-- Stylized folded L mark matching the provided logo -->
+  <g transform="translate(18, 14) scale(0.65)">
+    <!-- Vertical Fold / Ribbon Stem -->
+    <path d="M 12 10 C 12 6, 45 6, 45 10 L 45 72 C 32 76, 12 70, 12 50 Z" 
+          fill="url(#lumoraGrad)" />
+    <!-- Sweeping Lower Ribbon / Base of L -->
+    <path d="M 12 50 C 18 78, 40 84, 52 84 C 68 84, 85 70, 95 62 C 86 66, 68 64, 52 64 C 42 64, 25 60, 12 50 Z" 
+          fill="url(#foldGrad)" />
+    <!-- Inner Arch Highlight -->
+    <path d="M 45 60 C 58 64, 75 62, 90 62 C 82 72, 65 84, 52 84 C 45 84, 38 80, 32 74 C 40 70, 45 65, 45 60 Z"
+          fill="#A47094" opacity="0.9" />
+  </g>
+</svg>
