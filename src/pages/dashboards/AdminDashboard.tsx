@@ -155,7 +155,7 @@ export const AdminDashboard: React.FC = () => {
           marginBottom: '2rem'
         }}
       >
-        <div style={{ display: 'flex', gap: '0.4rem', overflowX: 'auto', paddingBottom: '0.2rem' }}>
+        <div className="mobile-scroll-row" style={{ display: 'flex', gap: '0.4rem', overflowX: 'auto', paddingBottom: '0.2rem' }}>
           {[
             { id: 'overview', label: 'Operations Overview' },
             { id: 'rooms', label: `Rooms (${rooms.length})` },
@@ -185,7 +185,7 @@ export const AdminDashboard: React.FC = () => {
           ))}
         </div>
 
-        <div style={{ display: 'flex', gap: '0.6rem' }}>
+        <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
           <button
             onClick={() => setAddRoomModalOpen(true)}
             className="btn btn-primary btn-sm"
@@ -259,7 +259,7 @@ export const AdminDashboard: React.FC = () => {
               boxShadow: 'var(--shadow-xs)'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.8rem' }}>
               <div>
                 <h3 style={{ fontSize: '1.2rem', color: 'var(--color-midnight)', margin: 0 }}>
                   Live Estate Room Allocation Grid
@@ -268,7 +268,7 @@ export const AdminDashboard: React.FC = () => {
                   Click any room pill to toggle status between Available, Occupied, Cleaning, or Maintenance.
                 </p>
               </div>
-              <div style={{ display: 'flex', gap: '0.8rem', fontSize: '0.75rem', fontWeight: 600 }}>
+              <div style={{ display: 'flex', gap: '0.8rem', fontSize: '0.75rem', fontWeight: 600, flexWrap: 'wrap' }}>
                 <span style={{ color: '#10B981' }}>● Available ({availableRooms})</span>
                 <span style={{ color: '#EF4444' }}>● Occupied ({occupiedRooms})</span>
                 <span style={{ color: '#F59E0B' }}>● Cleaning ({cleaningRooms})</span>
@@ -749,6 +749,7 @@ export const AdminDashboard: React.FC = () => {
           }}
         >
           <div
+            className="lumora-modal-content"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
@@ -766,7 +767,7 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             <form onSubmit={handleSaveRoom}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="modal-two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                 <div className="form-group">
                   <label className="form-label">Room Number</label>
                   <input
@@ -806,7 +807,7 @@ export const AdminDashboard: React.FC = () => {
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="modal-two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                 <div className="form-group">
                   <label className="form-label">Price per Night ($)</label>
                   <input
@@ -832,7 +833,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+              <div className="modal-three-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
                 <div className="form-group">
                   <label className="form-label">Max Adults</label>
                   <input
@@ -890,13 +891,16 @@ export const AdminDashboard: React.FC = () => {
           }}
         >
           <div
+            className="lumora-modal-content"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
               padding: '2.5rem',
               maxWidth: '480px',
               width: '100%',
-              boxShadow: 'var(--shadow-xl)'
+              boxShadow: 'var(--shadow-xl)',
+              maxHeight: '90vh',
+              overflowY: 'auto'
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.8rem' }}>

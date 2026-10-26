@@ -80,16 +80,17 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '5.5rem', paddingBottom: '5rem' }}>
+    <div className="home-page-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem', paddingBottom: '4rem' }}>
       {/* 1. CINEMATIC FULL-BLEED EDITORIAL HERO */}
-      <section style={{ padding: '1.5rem 0 0' }}>
+      <section style={{ padding: '1rem 0 0' }}>
         <div className="container">
           <div
+            className="home-hero-card"
             style={{
               position: 'relative',
               borderRadius: '28px',
               overflow: 'hidden',
-              minHeight: '580px',
+              minHeight: '520px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -143,7 +144,7 @@ export const HomePage: React.FC = () => {
             <div style={{ position: 'relative', zIndex: 2, maxWidth: '620px' }}>
               <h1
                 style={{
-                  fontSize: 'clamp(2.8rem, 5.5vw, 4.6rem)',
+                  fontSize: 'clamp(2.3rem, 6vw, 4.4rem)',
                   fontWeight: 800,
                   color: '#FFFFFF',
                   lineHeight: 1.05,
@@ -156,9 +157,9 @@ export const HomePage: React.FC = () => {
 
               <p
                 style={{
-                  fontSize: '1.05rem',
+                  fontSize: '1.02rem',
                   color: 'rgba(255, 255, 255, 0.85)',
-                  margin: '0 0 2rem 0',
+                  margin: '0 0 1.8rem 0',
                   fontWeight: 400,
                   letterSpacing: '0.01em'
                 }}
@@ -166,12 +167,12 @@ export const HomePage: React.FC = () => {
                 Monterey Coast · Aspen Peaks · Manhattan Skyline
               </p>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div className="hero-cta-group" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
                 <Link
                   to="/rooms"
                   className="btn btn-primary"
                   style={{
-                    padding: '0.8rem 2rem',
+                    padding: '0.8rem 1.8rem',
                     fontSize: '0.95rem'
                   }}
                 >
@@ -183,7 +184,7 @@ export const HomePage: React.FC = () => {
                   to="/ai-recommendations"
                   className="btn btn-outline-white"
                   style={{
-                    padding: '0.8rem 1.8rem',
+                    padding: '0.8rem 1.6rem',
                     fontSize: '0.95rem'
                   }}
                 >
@@ -195,11 +196,12 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. SLEEK MINIMAL HORIZONTAL SEARCH CAPSULE */}
-      <section style={{ marginTop: '-3.2rem', position: 'relative', zIndex: 10 }}>
+      {/* 2. SLEEK MINIMAL HORIZONTAL SEARCH CAPSULE (RESPONSIVE) */}
+      <section className="home-search-section" style={{ marginTop: '-3rem', position: 'relative', zIndex: 10 }}>
         <div className="container">
           <form
             onSubmit={handleSearchSubmit}
+            className="home-search-capsule"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '9999px',
@@ -214,16 +216,16 @@ export const HomePage: React.FC = () => {
             }}
           >
             {/* Estate */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: '150px' }}>
-              <MapPin size={16} color="var(--color-sapphire)" />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="search-field" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: '150px' }}>
+              <MapPin size={18} color="var(--color-sapphire)" style={{ flexShrink: 0 }} />
+              <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                 <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
                   Estate
                 </span>
                 <select
                   value={destination}
                   onChange={e => setDestination(e.target.value)}
-                  style={{ border: 'none', background: 'none', fontWeight: 600, fontSize: '0.88rem', color: 'var(--color-midnight)', outline: 'none', cursor: 'pointer' }}
+                  style={{ border: 'none', background: 'none', fontWeight: 600, fontSize: '0.88rem', color: 'var(--color-midnight)', outline: 'none', cursor: 'pointer', width: '100%' }}
                 >
                   <option value="Lumora Coastal Estate, Monterey">Monterey Coast</option>
                   <option value="Lumora Alpine Chalet, Aspen">Aspen Chalet</option>
@@ -232,11 +234,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
+            <div className="search-divider" style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
 
             {/* Check-In */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <Calendar size={16} color="var(--color-sapphire)" />
+            <div className="search-field" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <Calendar size={18} color="var(--color-sapphire)" style={{ flexShrink: 0 }} />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
                   Check-In
@@ -250,11 +252,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
+            <div className="search-divider" style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
 
             {/* Check-Out */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <Calendar size={16} color="var(--color-sapphire)" />
+            <div className="search-field" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <Calendar size={18} color="var(--color-sapphire)" style={{ flexShrink: 0 }} />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
                   Check-Out
@@ -268,11 +270,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
+            <div className="search-divider" style={{ width: '1px', height: '24px', backgroundColor: 'rgba(11, 25, 87, 0.08)' }} />
 
             {/* Guests */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <Users size={16} color="var(--color-sapphire)" />
+            <div className="search-field" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <Users size={18} color="var(--color-sapphire)" style={{ flexShrink: 0 }} />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
                   Guests
@@ -292,7 +294,7 @@ export const HomePage: React.FC = () => {
 
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-primary search-btn"
               style={{ padding: '0.7rem 1.8rem', borderRadius: '9999px', fontSize: '0.9rem' }}
             >
               Search
@@ -630,6 +632,52 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 860px) {
+          .home-page-wrapper {
+            gap: 3.5rem !important;
+          }
+          .home-hero-card {
+            padding: 2.2rem 1.25rem 2rem !important;
+            border-radius: 20px !important;
+            min-height: 460px !important;
+          }
+          .home-search-section {
+            margin-top: -1.75rem !important;
+          }
+          .home-search-capsule {
+            border-radius: 20px !important;
+            padding: 1.25rem 1.1rem !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 0.75rem !important;
+          }
+          .search-divider {
+            display: none !important;
+          }
+          .search-field {
+            padding: 0.55rem 0.85rem !important;
+            background-color: var(--color-lace) !important;
+            border-radius: 12px !important;
+            width: 100% !important;
+          }
+          .search-btn {
+            width: 100% !important;
+            border-radius: 12px !important;
+            height: 46px !important;
+            font-size: 0.95rem !important;
+          }
+          .hero-cta-group {
+            width: 100%;
+          }
+          .hero-cta-group .btn {
+            flex: 1 1 140px;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </div>
   );
 };
+

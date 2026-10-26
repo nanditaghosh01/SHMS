@@ -76,12 +76,9 @@ export const RoomsPage: React.FC = () => {
 
         {/* Minimal Horizontal Category Pills */}
         <div
+          className="mobile-scroll-row"
           style={{
-            display: 'flex',
-            gap: '0.5rem',
-            overflowX: 'auto',
-            paddingBottom: '0.5rem',
-            marginBottom: '2.5rem'
+            marginBottom: '2rem'
           }}
         >
           {categories.map(cat => {
@@ -101,7 +98,8 @@ export const RoomsPage: React.FC = () => {
                   cursor: 'pointer',
                   transition: 'all 0.15s',
                   textTransform: 'capitalize',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
                 {cat === 'all' ? 'All Suites' : cat}
@@ -112,6 +110,7 @@ export const RoomsPage: React.FC = () => {
 
         {/* Suites Grid */}
         <div
+          className="rooms-directory-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
@@ -123,6 +122,15 @@ export const RoomsPage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .rooms-directory-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

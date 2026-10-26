@@ -41,6 +41,7 @@ export const ContactPage: React.FC = () => {
         </div>
 
         <div
+          className="contact-layout-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -106,6 +107,7 @@ export const ContactPage: React.FC = () => {
 
           {/* Contact Form Right */}
           <div
+            className="contact-card"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '24px',

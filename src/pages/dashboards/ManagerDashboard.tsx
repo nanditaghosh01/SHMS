@@ -79,7 +79,7 @@ export const ManagerDashboard: React.FC = () => {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.4rem', backgroundColor: '#FFFFFF', padding: '0.3rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--color-border)' }}>
+        <div className="mobile-scroll-row" style={{ display: 'flex', gap: '0.4rem', backgroundColor: '#FFFFFF', padding: '0.3rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--color-border)' }}>
           {[
             { id: '7d', label: 'Last 7 Days' },
             { id: '30d', label: 'Last 30 Days' },
@@ -245,6 +245,7 @@ export const ManagerDashboard: React.FC = () => {
 
       {/* 2-Column Split: Revenue Share & Staff Performance */}
       <div
+        className="manager-split-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',

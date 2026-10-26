@@ -24,6 +24,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room }) => {
       {/* High-Resolution Architectural Photography */}
       <Link
         to={`/rooms/${room.id}`}
+        className="card-media-wrapper"
         style={{
           position: 'relative',
           height: '260px',
@@ -170,6 +171,16 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room }) => {
         }
         .card-action-link:hover {
           color: var(--color-midnight) !important;
+        }
+        @media (hover: none) {
+          .lumora-editorial-card:hover {
+            transform: none !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .lumora-editorial-card .card-media-wrapper {
+            height: 210px !important;
+          }
         }
       `}</style>
     </article>

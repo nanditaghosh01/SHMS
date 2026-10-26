@@ -132,7 +132,7 @@ export const ReceptionistDashboard: React.FC = () => {
   return (
     <div>
       {/* Front Desk Tabs */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', overflowX: 'auto', paddingBottom: '0.2rem' }}>
+      <div className="mobile-scroll-row" style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', overflowX: 'auto', paddingBottom: '0.2rem' }}>
         {[
           { id: 'arrivals', label: `Today's Arrivals & In-House (${arrivals.length + checkedInGuests.length})` },
           { id: 'scanner', label: 'QR Pass Verification Kiosk' },
@@ -339,6 +339,7 @@ export const ReceptionistDashboard: React.FC = () => {
       {/* TAB 2: QR PASS VERIFICATION KIOSK */}
       {activeTab === 'scanner' && (
         <div
+          className="receptionist-split-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
@@ -564,6 +565,7 @@ export const ReceptionistDashboard: React.FC = () => {
       {activeTab === 'walkin' && (
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
           <div
+            className="walkin-card"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
@@ -609,7 +611,7 @@ export const ReceptionistDashboard: React.FC = () => {
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="modal-two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                 <div className="form-group">
                   <label className="form-label">Email Address</label>
                   <input
@@ -633,7 +635,7 @@ export const ReceptionistDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="modal-two-col-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                 <div className="form-group">
                   <label className="form-label">Allocate Sanctuary</label>
                   <select

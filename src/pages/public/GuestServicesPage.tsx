@@ -162,6 +162,7 @@ export const GuestServicesPage: React.FC = () => {
         {activeTab === 'catalog' && (
           <div>
             <div
+              className="services-catalog-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -295,13 +296,16 @@ export const GuestServicesPage: React.FC = () => {
             }}
           >
             <div
+              className="lumora-modal-content"
               style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '24px',
                 padding: '2rem',
                 maxWidth: '460px',
                 width: '100%',
-                boxShadow: '0 24px 60px rgba(11, 25, 87, 0.2)'
+                boxShadow: '0 24px 60px rgba(11, 25, 87, 0.2)',
+                maxHeight: '90vh',
+                overflowY: 'auto'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem', paddingBottom: '0.8rem', borderBottom: '1px solid rgba(11, 25, 87, 0.08)' }}>
@@ -331,7 +335,7 @@ export const GuestServicesPage: React.FC = () => {
                     />
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  <div className="modal-two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div className="form-group">
                       <label className="form-label" style={{ fontSize: '0.8rem' }}>Room</label>
                       <input

@@ -122,6 +122,9 @@ export const HotelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [inventory, setInventory] = useState<InventoryItem[]>(() => safeParse('lumora_inventory', initialInventory));
   const [staff, setStaff] = useState<StaffMember[]>(() => safeParse('lumora_staff', initialStaff));
   const [services, setServices] = useState<ServiceRequest[]>(() => safeParse('lumora_services', initialServices));
+  const [payments, setPayments] = useState<PaymentRecord[]>(() => safeParse('lumora_payments', initialPayments));
+  const [maintenanceReports, setMaintenanceReports] = useState<MaintenanceReport[]>(() => safeParse('lumora_maintenance', initialMaintenance));
+  const [feedbackList, setFeedbackList] = useState<GuestFeedback[]>(() => safeParse('lumora_feedback', initialFeedback));
 
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
     destination: 'Lumora Coastal Estate, Monterey',
@@ -157,6 +160,18 @@ export const HotelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     localStorage.setItem('lumora_services', JSON.stringify(services));
   }, [services]);
+
+  useEffect(() => {
+    localStorage.setItem('lumora_payments', JSON.stringify(payments));
+  }, [payments]);
+
+  useEffect(() => {
+    localStorage.setItem('lumora_maintenance', JSON.stringify(maintenanceReports));
+  }, [maintenanceReports]);
+
+  useEffect(() => {
+    localStorage.setItem('lumora_feedback', JSON.stringify(feedbackList));
+  }, [feedbackList]);
 
   // Rooms CRUD
   const addRoom = (newRoomData: Omit<Room, 'id'>): Room => {
@@ -410,6 +425,63 @@ export const HotelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     );
   };
 
+  // Payments
+  const recordPayment = (paymentData: Omit<PaymentRecord, 'id' | 'paidAt' | 'invoiceNumber'>): PaymentRecord => {
+    const randomInv = Math.floor(1000 + Math.random() * 9000);
+    const newPayment: PaymentRecord = {
+      ...paymentData,
+      id: `pay-${Date.now()}`,
+      invoiceNumber: `INV-2026-${randomInv}`,
+      paidAt: new Date().toISOString()
+    };
+    setPayments(prev => [newPayment, ...prev]);
+    return newPayment;
+  };
+
+  const verifyPayment = (refOrId: string) => {
+    return payments.find(p => p.id === refOrId || p.bookingReference === refOrId || p.transactionRef === refOrId);
+  };
+
+  const updatePaymentStatus = (paymentId: string, status: PaymentStatus) => {
+    setPayments(prev => prev.map(p => (p.id === paymentId ? { ...p, status } : p)));
+  };
+
+  // Maintenance
+  const resolveMaintenanceReport = (id: string, notes?: string) => {
+    setMaintenanceReports(prev =>
+      prev.map(m => (m.id === id ? { ...m, status: 'resolved', resolvedAt: new Date().toISOString(), resolutionNotes: notes || m.resolutionNotes } : m))
+    );
+  };
+
+  // Feedback
+  const submitFeedback = (feedbackData: Omit<GuestFeedback, 'id' | 'createdAt'>): GuestFeedback => {
+    const newFbk: GuestFeedback = {
+      ...feedbackData,
+      id: `fbk-${Date.now()}`,
+      createdAt: new Date().toISOString()
+    };
+    setFeedbackList(prev => [newFbk, ...prev]);
+    return newFbk;
+  };
+
+  // Synthesis Pipeline Stats
+  const getDatabaseStats = () => {
+    const occupiedCount = rooms.filter(r => r.status === 'occupied').length;
+    const rev = bookings.filter(b => b.paymentStatus === 'successful').reduce((acc, b) => acc + b.totalPrice, 0);
+    return {
+      userCount: staff.length + 1,
+      roomCount: rooms.length,
+      bookingCount: bookings.length,
+      paymentCount: payments.length,
+      taskCount: tasks.length,
+      serviceCount: services.length,
+      feedbackCount: feedbackList.length,
+      maintenanceCount: maintenanceReports.length,
+      totalRevenue: rev,
+      occupancyPercent: rooms.length > 0 ? Math.round((occupiedCount / rooms.length) * 100) : 0
+    };
+  };
+
   return (
     <HotelContext.Provider
       value={{
@@ -425,10 +497,16 @@ export const HotelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         findBookingByRefOrQr,
         checkInGuest,
         checkOutGuest,
+        payments,
+        recordPayment,
+        verifyPayment,
+        updatePaymentStatus,
         tasks,
         addTask,
         updateTaskStatus,
         reportIssue,
+        maintenanceReports,
+        resolveMaintenanceReport,
         inventory,
         addInventoryItem,
         updateInventoryStock,
@@ -439,8 +517,11 @@ export const HotelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         services,
         submitServiceRequest,
         updateServiceStatus,
+        feedbackList,
+        submitFeedback,
         searchCriteria,
-        setSearchCriteria
+        setSearchCriteria,
+        getDatabaseStats
       }}
     >
       {children}

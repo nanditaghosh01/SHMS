@@ -88,11 +88,42 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
 
   const navLinks = getNavLinks();
 
+  // Lock body scroll when mobile sidebar is open
+  React.useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [sidebarOpen]);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#F4F7FC' }}>
       <DemoBar />
 
       <div style={{ display: 'flex', flex: 1, position: 'relative' }}>
+        {/* Mobile Backdrop Overlay */}
+        {sidebarOpen && (
+          <div
+            className="dashboard-backdrop"
+            onClick={() => setSidebarOpen(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(11, 25, 87, 0.5)',
+              backdropFilter: 'blur(3px)',
+              WebkitBackdropFilter: 'blur(3px)',
+              zIndex: 840
+            }}
+          />
+        )}
+
         {/* Left Sidebar */}
         <aside
           style={{
@@ -106,13 +137,28 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
             top: 0,
             height: '100vh',
             zIndex: 850,
-            transition: 'transform 0.3s'
+            transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
           className={`dashboard-sidebar ${sidebarOpen ? 'open' : ''}`}
         >
           {/* Brand & Role Header */}
-          <div style={{ padding: '1.5rem 1.4rem 1.2rem', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-            <Logo variant="dark" size="md" showTagline={false} />
+          <div style={{ padding: '1.25rem 1.4rem 1.2rem', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Logo variant="dark" size="md" showTagline={false} />
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="dashboard-close-btn"
+                aria-label="Close sidebar"
+                style={{
+                  display: 'none',
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  padding: '0.4rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <X size={20} />
+              </button>
+            </div>
             <div style={{ marginTop: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span
                 style={{
@@ -237,6 +283,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           {/* Dashboard Topbar */}
           <header
+            className="dashboard-header"
             style={{
               height: '70px',
               backgroundColor: '#FFFFFF',
@@ -250,27 +297,43 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
               zIndex: 800
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', minWidth: 0 }}>
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="dashboard-menu-btn"
                 aria-label="Toggle menu"
-                style={{ display: 'none', color: 'var(--color-midnight)' }}
+                style={{
+                  display: 'none',
+                  color: 'var(--color-midnight)',
+                  padding: '0.4rem',
+                  borderRadius: 'var(--radius-sm)',
+                  backgroundColor: sidebarOpen ? 'var(--color-lace)' : 'transparent',
+                  cursor: 'pointer'
+                }}
               >
                 {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
 
-              <div>
-                <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-midnight)' }}>
+              <div style={{ minWidth: 0 }}>
+                <h1
+                  style={{
+                    fontSize: 'clamp(1rem, 4vw, 1.25rem)',
+                    fontWeight: 700,
+                    color: 'var(--color-midnight)',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                >
                   {currentRoleTitle} Workspace
                 </h1>
-                <p style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>
+                <p className="dashboard-subtitle" style={{ fontSize: '0.76rem', color: 'var(--color-text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   Lumora Coastal Estate • Terminal v2.4 (Encrypted)
                 </p>
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
               {/* Notifications */}
               <button
                 onClick={() => navigate('/profile')}
@@ -318,8 +381,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.7rem',
-                  padding: '0.35rem 0.8rem',
+                  gap: '0.65rem',
+                  padding: '0.35rem 0.65rem',
                   borderRadius: 'var(--radius-full)',
                   backgroundColor: 'var(--color-bridal-blue)',
                   border: '1px solid var(--color-border)'
@@ -329,31 +392,31 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
                   <img
                     src={user.avatarUrl}
                     alt={user?.name || 'User'}
-                    style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
+                    style={{ width: '30px', height: '30px', borderRadius: '50%', objectFit: 'cover' }}
                   />
                 ) : (
                   <div
                     style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '30px',
+                      height: '30px',
                       borderRadius: '50%',
                       backgroundColor: 'var(--color-midnight)',
                       color: '#FFFFFF',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '0.8rem',
+                      fontSize: '0.78rem',
                       fontWeight: 700
                     }}
                   >
                     {user?.name ? user.name.charAt(0) : 'U'}
                   </div>
                 )}
-                <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
-                  <span style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--color-midnight)' }}>
+                <div className="dashboard-profile-text" style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-midnight)' }}>
                     {user?.name || 'Staff User'}
                   </span>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--color-sapphire)', textTransform: 'capitalize' }}>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--color-sapphire)', textTransform: 'capitalize' }}>
                     {role}
                   </span>
                 </div>
@@ -362,7 +425,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
           </header>
 
           {/* Page Body */}
-          <main style={{ flex: 1, padding: '2rem 1.8rem 4rem', minWidth: 0 }}>
+          <main className="dashboard-main" style={{ flex: 1, padding: '2rem 1.8rem 4rem', minWidth: 0 }}>
             <Outlet />
           </main>
         </div>
@@ -377,12 +440,32 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ currentRoleTit
             left: 0 !important;
             height: 100vh !important;
             transform: translateX(-100%);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
           }
           .dashboard-sidebar.open {
             transform: translateX(0);
           }
           .dashboard-menu-btn {
             display: flex !important;
+          }
+          .dashboard-close-btn {
+            display: flex !important;
+          }
+          .dashboard-header {
+            padding: 0 1rem !important;
+          }
+          .dashboard-main {
+            padding: 1.25rem 1rem 5rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .dashboard-subtitle {
+            display: none !important;
+          }
+        }
+        @media (max-width: 520px) {
+          .dashboard-profile-text {
+            display: none !important;
           }
         }
       `}</style>

@@ -208,19 +208,19 @@ export const QrPassPage: React.FC = () => {
 
           {/* Guest and Date Details */}
           <div style={{ padding: '0 1.8rem 1.8rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.82rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
               <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Guest Name:</span>
               <strong style={{ color: '#FFFFFF' }}>{booking.guestName}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
               <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Reservation:</span>
               <strong style={{ color: '#FFFFFF' }}>{booking.bookingReference}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
               <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Valid Dates:</span>
               <strong style={{ color: '#FFFFFF' }}>{booking.checkInDate} — {booking.checkOutDate}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.25rem' }}>
               <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Current Terminal Time:</span>
               <span style={{ color: 'var(--color-lavender)', fontWeight: 600 }}>{currentTime}</span>
             </div>

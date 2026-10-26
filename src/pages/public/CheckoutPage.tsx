@@ -251,6 +251,7 @@ export const CheckoutPage: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {/* Section 1: Guest Details */}
               <div
+                className="checkout-card"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: 'var(--radius-xl)',
@@ -322,6 +323,7 @@ export const CheckoutPage: React.FC = () => {
 
               {/* Section 2: Payment Method */}
               <div
+                className="checkout-card"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: 'var(--radius-xl)',
@@ -441,6 +443,7 @@ export const CheckoutPage: React.FC = () => {
 
             {/* Right Column: Reservation Summary Card */}
             <aside
+              className="checkout-summary-aside"
               style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: 'var(--radius-xl)',
@@ -547,6 +550,17 @@ export const CheckoutPage: React.FC = () => {
         @media (max-width: 960px) {
           .checkout-layout {
             grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
+          }
+          .checkout-summary-aside {
+            position: static !important;
+            width: 100% !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .checkout-card, .checkout-summary-aside {
+            padding: 1.25rem !important;
+            border-radius: var(--radius-lg) !important;
           }
         }
       `}</style>

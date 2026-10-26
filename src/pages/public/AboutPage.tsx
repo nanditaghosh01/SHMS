@@ -31,12 +31,13 @@ export const AboutPage: React.FC = () => {
 
         {/* Large Architectural Photography */}
         <div
+          className="about-hero-image"
           style={{
             borderRadius: '24px',
             overflow: 'hidden',
             height: '440px',
             boxShadow: '0 12px 32px rgba(11, 25, 87, 0.06)',
-            marginBottom: '4rem'
+            marginBottom: '3rem'
           }}
         >
           <img
@@ -48,11 +49,12 @@ export const AboutPage: React.FC = () => {
 
         {/* 3 Minimal Pillars - Zero Paragraph Essays */}
         <div
+          className="about-pillars-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '2rem',
-            marginBottom: '4rem'
+            marginBottom: '3.5rem'
           }}
         >
           <div

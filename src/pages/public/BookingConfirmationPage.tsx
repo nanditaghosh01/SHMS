@@ -192,6 +192,7 @@ export const BookingConfirmationPage: React.FC = () => {
 
         {/* Detailed Reservation Folio Breakdown */}
         <div
+          className="confirmation-folio-card"
           style={{
             backgroundColor: '#FFFFFF',
             borderRadius: 'var(--radius-xl)',
@@ -260,7 +261,7 @@ export const BookingConfirmationPage: React.FC = () => {
         </div>
 
         {/* Footer Actions */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+        <div className="confirmation-actions" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <Link to="/my-bookings" className="btn btn-secondary btn-lg">
             View All My Reservations
           </Link>
@@ -276,9 +277,23 @@ export const BookingConfirmationPage: React.FC = () => {
           .qr-confirmation-box {
             grid-template-columns: 1fr !important;
             text-align: center;
+            padding: 1.5rem !important;
           }
           .qr-confirmation-box > div:last-child {
             margin: 0 auto;
+          }
+          .qr-confirmation-box .btn {
+            width: 100% !important;
+            justify-content: center;
+          }
+        }
+        @media (max-width: 640px) {
+          .confirmation-folio-card {
+            padding: 1.25rem !important;
+            border-radius: var(--radius-lg) !important;
+          }
+          .confirmation-actions .btn {
+            width: 100% !important;
           }
         }
       `}</style>

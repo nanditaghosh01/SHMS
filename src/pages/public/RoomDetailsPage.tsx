@@ -138,9 +138,10 @@ export const RoomDetailsPage: React.FC = () => {
         </div>
 
         {/* Image Gallery */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: '2.5rem' }}>
           {/* Main Large Image */}
           <div
+            className="room-details-main-img"
             style={{
               height: '480px',
               borderRadius: 'var(--radius-xl)',
@@ -160,7 +161,7 @@ export const RoomDetailsPage: React.FC = () => {
 
           {/* Thumbnails */}
           {room.images.length > 1 && (
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div className="room-details-thumbnails mobile-scroll-row" style={{ display: 'flex', gap: '0.75rem' }}>
               {room.images.map((img, idx) => (
                 <button
                   key={idx}
@@ -174,7 +175,8 @@ export const RoomDetailsPage: React.FC = () => {
                     opacity: activeImageIndex === idx ? 1 : 0.65,
                     cursor: 'pointer',
                     transition: 'all 0.2s',
-                    padding: 0
+                    padding: 0,
+                    flexShrink: 0
                   }}
                 >
                   <img src={img} alt={`${room.name} thumbnail ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -189,7 +191,7 @@ export const RoomDetailsPage: React.FC = () => {
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 380px',
-            gap: '3.5rem',
+            gap: '3rem',
             alignItems: 'start'
           }}
           className="details-layout"
@@ -198,6 +200,7 @@ export const RoomDetailsPage: React.FC = () => {
           <div>
             {/* Quick Specs Bar */}
             <div
+              className="room-specs-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
@@ -337,6 +340,7 @@ export const RoomDetailsPage: React.FC = () => {
 
           {/* Right Sticky Booking Box */}
           <aside
+            className="room-booking-aside"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
@@ -474,6 +478,26 @@ export const RoomDetailsPage: React.FC = () => {
         @media (max-width: 960px) {
           .details-layout {
             grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .room-booking-aside {
+            position: static !important;
+            width: 100% !important;
+            padding: 1.5rem !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .room-details-main-img {
+            height: 270px !important;
+            border-radius: var(--radius-lg) !important;
+          }
+          .room-details-thumbnails button {
+            width: 80px !important;
+            height: 56px !important;
+          }
+          .room-specs-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            padding: 1rem !important;
           }
         }
       `}</style>

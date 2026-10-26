@@ -34,6 +34,7 @@ export const ProfilePage: React.FC = () => {
       <div className="container" style={{ maxWidth: '960px' }}>
         {/* Header Profile Summary */}
         <div
+          className="profile-header-card"
           style={{
             backgroundColor: '#FFFFFF',
             borderRadius: 'var(--radius-xl)',
@@ -44,11 +45,11 @@ export const ProfilePage: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '2rem',
+            gap: '1.5rem',
             marginBottom: '2.5rem'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div className="profile-user-summary" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
             {user?.avatarUrl ? (
               <img
                 src={user.avatarUrl}
@@ -67,7 +68,8 @@ export const ProfilePage: React.FC = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '2rem',
-                  fontWeight: 700
+                  fontWeight: 700,
+                  flexShrink: 0
                 }}
               >
                 {user?.name ? user.name.charAt(0) : 'U'}
@@ -75,7 +77,7 @@ export const ProfilePage: React.FC = () => {
             )}
 
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
                 <h1 style={{ fontSize: '1.65rem', color: 'var(--color-midnight)', margin: 0 }}>
                   {user?.name || 'Guest User'}
                 </h1>
@@ -86,14 +88,14 @@ export const ProfilePage: React.FC = () => {
               <p style={{ fontSize: '0.88rem', color: 'var(--color-text-secondary)', marginTop: '0.2rem' }}>
                 {user?.email} • {user?.phone || '+1 (555) 234-8901'}
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '0.6rem', fontSize: '0.8rem', color: 'var(--color-midnight-muted)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginTop: '0.6rem', fontSize: '0.8rem', color: 'var(--color-midnight-muted)', flexWrap: 'wrap' }}>
                 <span>Lumora Circle Status: <strong>Diamond Tier</strong></span>
                 <span>• Total Stays: <strong>{bookings.length}</strong></span>
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.6rem' }}>
+          <div className="mobile-scroll-row" style={{ display: 'flex', gap: '0.6rem' }}>
             <button
               onClick={() => setActiveTab('notifications')}
               className={`btn btn-sm ${activeTab === 'notifications' ? 'btn-primary' : 'btn-secondary'}`}
@@ -114,6 +116,7 @@ export const ProfilePage: React.FC = () => {
         {/* Tab 1: Notifications Center */}
         {activeTab === 'notifications' && (
           <div
+            className="profile-content-card"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
@@ -212,6 +215,7 @@ export const ProfilePage: React.FC = () => {
         {/* Tab 2: Profile Settings */}
         {activeTab === 'profile' && (
           <div
+            className="profile-content-card"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',

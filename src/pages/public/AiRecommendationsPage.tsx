@@ -177,6 +177,7 @@ export const AiRecommendationsPage: React.FC = () => {
           </div>
 
           <div
+            className="ai-results-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -208,6 +209,15 @@ export const AiRecommendationsPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .ai-results-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

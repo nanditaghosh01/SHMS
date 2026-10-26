@@ -95,12 +95,9 @@ export const MyBookingsPage: React.FC = () => {
 
         {/* Status Filter Tabs */}
         <div
+          className="mobile-scroll-row"
           style={{
-            display: 'flex',
-            gap: '0.5rem',
-            overflowX: 'auto',
-            paddingBottom: '0.5rem',
-            marginBottom: '2.5rem',
+            marginBottom: '2rem',
             borderBottom: '1px solid var(--color-border)'
           }}
         >
@@ -327,6 +324,13 @@ export const MyBookingsPage: React.FC = () => {
         @media (max-width: 768px) {
           .booking-list-item {
             grid-template-columns: 1fr !important;
+            padding: 1.25rem !important;
+            border-radius: var(--radius-lg) !important;
+            gap: 1.25rem !important;
+          }
+          .booking-list-item .btn {
+            width: 100% !important;
+            justify-content: center;
           }
         }
       `}</style>

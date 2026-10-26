@@ -107,6 +107,7 @@ export const HousekeepingDashboard: React.FC = () => {
 
       {/* Task Status Filter Bar */}
       <div
+        className="mobile-scroll-row"
         style={{
           display: 'flex',
           gap: '0.4rem',
@@ -143,7 +144,7 @@ export const HousekeepingDashboard: React.FC = () => {
       </div>
 
       {/* Task Cards Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
+      <div className="housekeeping-tasks-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
         {filteredTasks.length === 0 ? (
           <div style={{ gridColumn: '1 / -1', backgroundColor: '#FFFFFF', padding: '3.5rem 2rem', borderRadius: 'var(--radius-xl)', textAlign: 'center', border: '1px solid var(--color-border)' }}>
             <Sparkles size={32} color="var(--color-sapphire)" style={{ margin: '0 auto 0.8rem' }} />
@@ -259,13 +260,16 @@ export const HousekeepingDashboard: React.FC = () => {
           }}
         >
           <div
+            className="lumora-modal-content"
             style={{
               backgroundColor: '#FFFFFF',
               borderRadius: 'var(--radius-xl)',
               padding: '2.5rem',
               maxWidth: '480px',
               width: '100%',
-              boxShadow: 'var(--shadow-xl)'
+              boxShadow: 'var(--shadow-xl)',
+              maxHeight: '90vh',
+              overflowY: 'auto'
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.2rem', paddingBottom: '0.8rem', borderBottom: '1px solid var(--color-border)' }}>

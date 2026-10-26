@@ -57,6 +57,7 @@ export const LoginPage: React.FC = () => {
       <div style={{ maxWidth: '480px', width: '100%' }}>
         {/* Brand Card */}
         <div
+          className="login-auth-card"
           style={{
             backgroundColor: '#FFFFFF',
             borderRadius: 'var(--radius-xl)',
@@ -88,7 +89,7 @@ export const LoginPage: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, fontSize: '0.78rem', color: 'var(--color-midnight)', marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               <Sparkles size={14} color="var(--color-sapphire)" /> Quick Demo Role Switcher:
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.45rem' }}>
+            <div className="quick-roles-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.45rem' }}>
               {quickRoles.map(r => (
                 <button
                   key={r.role}
