@@ -4,7 +4,7 @@
 
 **LUMORA** is a next-generation Smart Hotel Management System (SHMS) that bridges the gap between high-end guest experiences and high-efficiency hotel operations. From effortless room discovery, algorithmic AI room recommendations, and digital QR contactless check-in to real-time housekeeping turnover boards and executive predictive analytics, LUMORA delivers an end-to-end hospitality operating system.
 
-The system is architected around **6 core operational modules** aligned with real-world software engineering Data Flow Diagrams (DFDs), backed by local client-side persistence and zero-friction role switching.
+The system is architected around a modular operational domain model, backed by local client-side persistence and zero-friction role switching.
 
 ---
 
@@ -61,57 +61,6 @@ LUMORA comes with a floating **Staff Role Switcher (DemoBar)** on every screen, 
 | **Receptionist** | Mia Chen | `mia.chen@lumorahotels.com` | Express arrivals/departures, QR pass scanner, walk-in creation, folio printing |
 | **Housekeeping** | Elena Rostova | `elena.r@lumorahotels.com` | Room turnover taskboard, priority management, facility fault reporting |
 | **General Manager** | Victoria Kensington | `v.kensington@lumorahotels.com` | Predictive trend forecasting, RevPAR/ADR charts, revenue share, department KPIs |
-
----
-
-## 🏗️ System Architecture & DFD Alignment
-
-The application is structured following modular Software Engineering Data Flow Diagram (DFD) entities:
-
-```mermaid
-flowchart TD
-    subgraph Public_Guest_Portal["Public Guest Portal"]
-        G1[Guest User] -->|Search & Book| M1[Module 1: Reservation Engine]
-        G1 -->|Preferences| M1_AI[AI Recommendation Engine]
-        M1 -->|Transaction| M3[Module 3: Payment & Folio]
-        G1 -->|Requests & Reviews| M5[Module 5: Guest Services & Feedback]
-    end
-
-    subgraph Internal_Databases["Central Data Store (HotelContext)"]
-        D1[(Room DB)]
-        D2[(Booking DB)]
-        D3[(Payment Records)]
-        D4[(Tasks & Inventory)]
-        D5[(Staff DB)]
-        D6[(Maintenance & Feedback)]
-    end
-
-    M1 --> D2
-    M1 --> D1
-    M3 --> D3
-    M5 --> D6
-
-    subgraph Operational_Dashboards["Staff & Operational Dashboards"]
-        REC[Receptionist Desk] <-->|Check-in / QR Scanner| D2
-        REC <-->|Walk-in Bookings| D1
-        HK[Housekeeping] <-->|Turnover Status| D4
-        HK -->|Update Room State| D1
-        HK -->|Report Issue| D6
-        ADM[Administrator] <-->|CRUD Management| D1
-        ADM <-->|Staff & Stock| D4
-        ADM <-->|Manage Users| D5
-        MGR[General Manager] <-->|Module 6: Cross-DB Synthesis| D2
-        MGR <-->|RevPAR & Predictive Trends| D3
-    end
-```
-
-### Module Mapping
-* **Module 1 (Guest Reservation & Booking)**: Handles search parameters, multi-guest calculations, date validation, and reservation confirmation.
-* **Module 2 (Room Inventory & Availability Control)**: Controls real-time room availability, floor assignments, and occupancy states.
-* **Module 3 (Payment Gateway & Folio Records)**: Simulates authorization gateways, generates transaction references (`TXN-LUM-xxxx`), and maintains printable guest folios.
-* **Module 4 (Task & Maintenance Management)**: Coordinates room cleaning workflows, low-stock threshold triggers, and facility repairs.
-* **Module 5 (Guest Services & Experience Management)**: Manages in-suite dining requests, amenities delivery, and guest sentiment capture.
-* **Module 6 (Executive Analytics & Data Synthesis)**: Aggregates multi-database statistics into RevPAR, ADR, and forward forecasting metrics.
 
 ---
 
