@@ -1,7 +1,5 @@
 # LUMORA — Smart Hotel Management System (SHMS)
 
-
-
 ## 🌟 Overview
 
 **LUMORA** is a next-generation Smart Hotel Management System (SHMS) that bridges the gap between high-end guest experiences and high-efficiency hotel operations. From effortless room discovery, algorithmic AI room recommendations, and digital QR contactless check-in to real-time housekeeping turnover boards and executive predictive analytics, LUMORA delivers an end-to-end hospitality operating system.
@@ -146,91 +144,6 @@ LUMORA uses a dedicated, modern luxury design system implemented in clean CSS va
 * **Interactive Effects**: [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti)
 * **Code Linting**: [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) (`1.81.0`)
 * **State & Persistence**: React Context API (`AuthContext`, `HotelContext`, `NotificationContext`) with automatic `localStorage` serialization and fault-tolerant parsing.
-
----
-
-## 📁 Project Structure
-
-```text
-SHMS/
-├── index.html                   # HTML entry point with fonts & metadata
-├── package.json                 # Dependencies and npm scripts
-├── tsconfig.json                # TypeScript root configuration
-├── tsconfig.app.json            # Client compilation settings
-├── vite.config.ts               # Vite bundler configuration
-├── .oxlintrc.json               # Oxlint high-speed linter rules
-│
-├── public/                      # Static assets & icons
-│   ├── favicon.svg              # App favicon
-│   └── icons.svg                # Vector icons
-│
-└── src/
-    ├── main.tsx                 # React DOM mount point
-    ├── App.tsx                  # Top-level routing & layout orchestration
-    ├── App.css                  # Global layout styles & animations
-    ├── index.css                # LUMORA Design System tokens & base CSS
-    │
-    ├── assets/                  # Local media assets
-    │   └── hero.png             # Hero banner imagery
-    │
-    ├── types/                   # Unified TypeScript interfaces & types
-    │   └── index.ts             # Room, Booking, Staff, Payment, Task interfaces
-    │
-    ├── context/                 # Context providers (State layer)
-    │   ├── AuthContext.tsx      # User authentication, roles, session state
-    │   ├── HotelContext.tsx     # Centralized multi-database operations
-    │   └── NotificationContext.tsx # Global toast notification manager
-    │
-    ├── data/                    # Initial seed datasets & mock databases
-    │   ├── initialRooms.ts      # Room catalog (Standard to Presidential)
-    │   ├── initialBookings.ts   # Active and historical guest reservations
-    │   ├── initialStaff.ts      # Staff directory with shifts and roles
-    │   ├── initialTasks.ts      # Housekeeping turnover task records
-    │   ├── initialInventory.ts  # Hospitality supplies & stock thresholds
-    │   ├── initialPayments.ts   # Transaction records & gateway responses
-    │   ├── initialServices.ts   # In-room dining and guest service orders
-    │   ├── initialFeedback.ts   # Guest review logs & sentiment records
-    │   └── initialMaintenance.ts# Facility engineering fault tickets
-    │
-    ├── components/
-    │   ├── cards/
-    │   │   ├── RoomCard.tsx     # Reusable luxury room display card
-    │   │   └── StatCard.tsx     # KPI metric display widget
-    │   ├── common/
-    │   │   ├── Header.tsx       # Navigation bar with role indicators
-    │   │   ├── Footer.tsx       # Brand footer with links and hours
-    │   │   ├── Logo.tsx         # Stylized folded 'L' SVG brand identity
-    │   │   ├── DemoBar.tsx      # Floating staff role switcher
-    │   │   ├── MobileBottomBar.tsx # Mobile dock navigation
-    │   │   └── ErrorBoundary.tsx# Crash protection wrapper
-    │   └── layout/
-    │       ├── PublicLayout.tsx # Container for public & guest pages
-    │       └── DashboardLayout.tsx # Admin/staff sidebar and topbar frame
-    │
-    └── pages/
-        ├── public/              # Guest-facing pages
-        │   ├── HomePage.tsx               # Landing page with hero & booking widget
-        │   ├── RoomsPage.tsx              # Filterable room catalog
-        │   ├── RoomDetailsPage.tsx        # High-res room specs & booking trigger
-        │   ├── AiRecommendationsPage.tsx  # Interactive AI room matching tool
-        │   ├── CheckoutPage.tsx           # Multi-step checkout & payment
-        │   ├── BookingConfirmationPage.tsx# Post-booking celebratory screen
-        │   ├── QrPassPage.tsx             # Keyless digital pass & QR pass
-        │   ├── MyBookingsPage.tsx         # Guest reservation management
-        │   ├── GuestServicesPage.tsx      # In-room dining & service ordering
-        │   ├── AboutPage.tsx              # Brand architecture & philosophy
-        │   ├── ContactPage.tsx            # Concierge contact & directions
-        │   ├── HelpPage.tsx               # Guest FAQs and support center
-        │   ├── LoginPage.tsx              # Account login page
-        │   ├── RegisterPage.tsx           # Guest account registration
-        │   └── ProfilePage.tsx            # Guest profile preferences
-        │
-        └── dashboards/          # Operations & administrative pages
-            ├── AdminDashboard.tsx         # Global management, Room CRUD, Staff
-            ├── ReceptionistDashboard.tsx  # Express arrivals, QR scanner, Folios
-            ├── HousekeepingDashboard.tsx  # Room turnover & maintenance tickets
-            └── ManagerDashboard.tsx       # Predictive analytics & Recharts KPIs
-```
 
 ---
 
