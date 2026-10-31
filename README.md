@@ -1,24 +1,6 @@
 # LUMORA — Smart Hotel Management System (SHMS)
 
-<div align="center">
 
-![LUMORA Luxury Hotel Platform](src/assets/hero.png)
-
-### *Stay Beautifully. Manage Intelligently.*
-
-A modern, full-featured luxury hospitality and intelligent hotel management platform.  
-Engineered with **React 19**, **TypeScript**, **Vite**, **Recharts**, and a bespoke luxury design system.
-
-[![React](https://img.shields.io/badge/React-19.2.8-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![License](https://img.shields.io/badge/License-MIT-0B1957?style=for-the-badge)](LICENSE)
-
-[Key Features](#-key-features) • [User Roles & Demos](#-user-roles--demo-personas) • [Architecture](#-system-architecture--dfd-alignment) • [Getting Started](#-getting-started) • [Tech Stack](#-technology-stack) • [Project Structure](#-project-structure)
-
-</div>
-
----
 
 ## 🌟 Overview
 
